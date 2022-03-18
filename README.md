@@ -1,7 +1,7 @@
 # gesture-controls
 Gesture controls for interfacing with a device using OpenCV
 
-### Getting Started
+### Getting started
 
 ```
 chmod +x install_deps.sh
