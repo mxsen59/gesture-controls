@@ -3,7 +3,7 @@ import time
 import autopy
 import numpy as np
 import hand_tracking as ht
-from pynput.mouse import Controller as Controller
+from pynput.mouse import Controller
 
 capture = cv2.VideoCapture(-1)
 
