@@ -5,13 +5,13 @@ import numpy as np
 import alsaaudio as alsa
 import hand_tracking as ht
 
-_WIDTH = 480
-_HEIGHT = 640
+WIDTH = 480
+HEIGHT = 640
 
 capture = cv2.VideoCapture(-1)
 
-capture.set(3, _WIDTH)
-capture.set(4, _HEIGHT)
+capture.set(3, WIDTH)
+capture.set(4, HEIGHT)
 
 detector = ht.HandDetector(detection_con=0.7)
 
