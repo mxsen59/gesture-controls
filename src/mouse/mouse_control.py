@@ -3,15 +3,15 @@ import time
 import autopy
 import numpy as np
 import hand_tracking as ht
-from pynput.mouse import Controller
+from pynput.mouse import Controller as Controller
 
 capture = cv2.VideoCapture(-1)
 
-_WIDTH = 480
-_HEIGHT = 640
+WIDTH = 480
+HEIGHT = 640
 
-capture.set(3, _WIDTH)
-capture.set(4, _HEIGHT)
+capture.set(3, WIDTH)
+capture.set(4, HEIGHT)
 
 frame_reduction = 50
 smoothening = 10
@@ -47,8 +47,8 @@ def mouse_control():
 
         lm_list, bbox = detector.find_position(img, draw=False)
 
-        cv2.rectangle(img, (frame_reduction, frame_reduction), (_WIDTH -
-                      frame_reduction, _HEIGHT - frame_reduction), (255, 0, 255), 2)
+        cv2.rectangle(img, (frame_reduction, frame_reduction), (WIDTH -
+                      frame_reduction, HEIGHT - frame_reduction), (255, 0, 255), 2)
 
         if len(lm_list) != 0:
             x1, y1 = lm_list[8][1:]
@@ -57,9 +57,9 @@ def mouse_control():
             fingers = detector.fingers_up()
 
             if fingers[1] == 1 and fingers[2] == 0:
-                x3 = np.interp(x1, (frame_reduction, _WIDTH -
+                x3 = np.interp(x1, (frame_reduction, WIDTH -
                                frame_reduction), (0, screen_width))
-                y3 = np.interp(y1, (frame_reduction, _HEIGHT -
+                y3 = np.interp(y1, (frame_reduction, HEIGHT -
                                frame_reduction), (0, screen_height))
 
                 cloc_x = ploc_x + (x3 - ploc_x) / smoothening
@@ -84,7 +84,7 @@ def mouse_control():
 
                     autopy.mouse.click()
 
-            if fingers[1] == 1 and fingers[0] == 1:
+            if fingers[0] == 1 and fingers[1] == 1:
                 mouse.scroll(0, -2)
 
             if fingers[1] == 1 and fingers[4] == 1:
