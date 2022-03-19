@@ -3,6 +3,7 @@ import time
 import autopy
 import numpy as np
 import hand_tracking as ht
+from pynput.mouse import Controller
 
 capture = cv2.VideoCapture(-1)
 
@@ -18,6 +19,8 @@ smoothening = 10
 detector = ht.HandDetector(max_hands=1)
 
 screen_width, screen_height = autopy.screen.size()
+
+mouse = Controller()
 
 
 class ASCIIColors:
@@ -80,6 +83,12 @@ def mouse_control():
                                15, (0, 255, 0), cv2.FILLED)
 
                     autopy.mouse.click()
+
+            if fingers[1] == 1 and fingers[0] == 1:
+                mouse.scroll(0, -2)
+
+            if fingers[1] == 1 and fingers[4] == 1:
+                mouse.scroll(0, 2)
 
         curr_time = time.time()
         fps = 1 / (curr_time - prev_time)
